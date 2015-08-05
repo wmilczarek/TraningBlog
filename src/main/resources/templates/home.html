@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head :: head">
+
+</head>
+<body>
+<div class="span9">
+    <div th:include="fragments/navbar :: navbar"/>
+    <div class="row">
+
+        <div class="span2">
+            <h1>Welcome! </h1>
+            <label th:text="${userName}"></label>
+        </div>
+        <div class="span2">
+            <div th:include="fragments/shoutbox :: shoutBox"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

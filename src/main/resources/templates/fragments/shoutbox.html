@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div th:fragment="shoutBox">
+    <!-- shoutbox -->
+    <div class="shout_box">
+        <div class="header">Shout box
+            <div class="close_btn">&nbsp;</div>
+        </div>
+        <div class="toggle_chat">
+            <div id="message_box" class="message_box">
+            </div>
+            <div class="user_info">
+                <input style="width: 75%;" name="shout_message" id="shout_message" type="text"
+                       placeholder="Type Message Hit Enter" maxlength="100"/>
+                <button style="width: 20%;" type="button" class="btn .btn-default btn-xs">send</button>
+            </div>
+        </div>
+    </div>
+    <!-- shoutbox end -->
+
+    <script type="text/javascript">
+
+        $(document).ready(getShouts());
+        setInterval("getShouts();", 5000);
+
+        var data = {
+            shoutComment: ""
+        };
+
+        function getShouts() {
+            jQuery.ajax({
+                type: "GET",
+                url: "/home/shouts",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    $('#message_box').empty();
+                    displayData(data);
+                },
+                error: function (jqXHR, status) {
+                    // error handler
+                    //alert("failed");
+                }
+            })
+        }
+        ;
+
+        function displayData(data) {
+            var output = "<ul>";
+            for (var i in data) {
+                output += "<li>" + data[i].userNick + "-- " + data[i].shoutComment + " " + data[i].dateTime + "</li>";
+            }
+            output += "</ul>";
+            document.getElementById("message_box").innerHTML = output;
+        }
+
+        //method to trigger when user hits enter key
+        $("#shout_message").keypress(function (evt) {
+            if (evt.which == 13) {
+
+                sendShouts(data);
+            }
+        });
+
+        function sendShouts(data) {
+
+            data.shoutComment = $('#shout_message').val();
+            jQuery.ajax({
+                type: "POST",
+                data: JSON.stringify(data),
+                url: "/home/sendShout",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    alert("success");
+                },
+                error: function (jqXHR, status) {
+                    // error handler
+                    alert("failed");
+                }
+            });
+        }
+
+    </script>
+
+</div>
+</body>
+</html>
+
