@@ -4,9 +4,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by wmilczarek on 2015-04-28.
- */
+
 public class Comment {
 
     @Id
