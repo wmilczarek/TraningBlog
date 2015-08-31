@@ -32,7 +32,7 @@ CREATE TABLE shouts (
   id SERIAL PRIMARY KEY,
   is_active BOOLEAN DEFAULT TRUE,
   user_id INTEGER REFERENCES users(id),
-  timestamp Date,
+  date_time Date,
   shout_comment VARCHAR(255) NOT NULL
 );
 

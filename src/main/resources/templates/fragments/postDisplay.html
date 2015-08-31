@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+<div th:fragment="postDisplay">
+
+    <div class="shout_box">
+        <div class="header">Shout box
+            <div class="close_btn">&nbsp;</div>
+        </div>
+        <div class="toggle_chat">
+            <div class="user_info">
+                <input style="width: 75%;" name="shout_message" id="shout_message" type="text"
+                       placeholder="Type Message Hit Enter" maxlength="100"/>
+                <button style="width: 20%;" type="button" class="btn .btn-default btn-xs">send</button>
+            </div>
+        </div>
+    </div>
+    <!-- shoutbox end -->
+</div>
+
+</body>
+</html>
